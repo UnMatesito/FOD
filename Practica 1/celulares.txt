@@ -1,0 +1,12 @@
+4734 56000.00  Samsung
+500 300  aaa
+A03 5G
+1234 70000.00  Xiaomi
+200 400  bbb
+13 Ultra
+3423 76000.00  Iphone
+1000 200  
+15 Pro Max
+466 50000.00 Samsung
+0 100 dsfhsdh
+S20
