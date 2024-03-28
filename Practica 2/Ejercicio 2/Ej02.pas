@@ -22,7 +22,7 @@ type
 
     archivo_detalle = file of detalle;
 
-procedure leerDetalle(det: archivo_detalle, dato: detalle);
+procedure leerDetalle(var det: archivo_detalle; dato: detalle);
 begin
     if (not eof(det)) then
         read(det, dato)
