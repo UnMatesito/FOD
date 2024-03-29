@@ -41,28 +41,28 @@ var
 begin
     assign(det, 'Detalle_Alumnos');
     reset(mae); reset(det);
-    read(mae, regM);
     leer(det, regD);
     while (regD <> valorAlto) do
         begin
-            aux = regD.codigo;
+            read(mae, regM);
             cantCursadas := 0; cantFinales := 0;
-            while (aux = regD.codigo) do
+            while (regM.codigo <> regD.codigo) do
+                read(mae, regM);
+            while (regM.codigo = regD.codigo) do
                 begin
                     if (regD.queAprobo = 1) then
                         cantCursadas := cantCursadas + 1
                     else
-                        cantFinales := cantFinales + 1;
+                        begin
+                            cantFinales := cantFinales + 1;
+                            cantCursadas := cantCursadas - 1;
+                        end;
                     leer(det, regD);
                 end;
-            while (aux <> regD.codigo) do
-                read(mae, regM);
             regM.cursadas := regM.cursadas + cantCursadas;
             regM.aprobadas := regM.aprobadas + cantFinales;
             seek(mae, filepos(mae)-1);
             write(mae, regM);
-            if (not eof(mae)) then
-                read(mae, regM);
         end;
     close(det);
     close(mae);

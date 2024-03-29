@@ -99,31 +99,24 @@ procedure actMaestro(var mae: archivo_productos; var det: archivo_detalle);
 var
     regM: producto;
     regD: detalle;
-    codActual, total: integer;
+    total: integer;
 begin
     reset(mae);
     reset(det);
-    if (not eof(mae)) then
+    leerDetalle(det, regD);
+    while (regD.codigo <> valorAlto) do
         begin
             read(mae, regM);
-            leerDetalle(det, regD);
-            while (regD.codigo <> valorAlto) do
+            while (regM.codigo <> regD.codigo) do
+                read(mae, regM);
+            while (regM.codigo = regD.codigo) do
                 begin
-                    codActual := regD.codigo;
-                    total := 0;
-                    writeln('Hola');
-                    while (not eof(mae)) and (regM.codigo <> codActual) do
-                        read(mae, regM);
-                    while (regM.codigo = codActual) do
-                        begin
-                            total := total + regD.cantVendida;
-                            leerDetalle(det, regD);
-                        end;
-                    regM.stockDisp := regM.stockDisp - total;
-                    write(mae, regM);
-                end; 
+                    regM.stockDisp := regM.stockDisp - regD.cantVendida;
+                    leerDetalle(det, regD);
+                end;
+            seek(mae, filepos(mae)-1);
+            write(mae, regM);
         end;
-    writeln('Hola');
     close(mae);
     close(det);
 end;
