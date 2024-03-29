@@ -1,1 +1,1 @@
-Codigo: 7 Precio: 9000.00 Stock Disponible: 0 Stock Minimo: 10 Nombre comercial: Poet
+Codigo: 2 Precio: 54387.00 Stock Disponible: 60 Stock Minimo: 100 Nombre comercial: Poet

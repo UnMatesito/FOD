@@ -63,7 +63,6 @@ procedure crearMaestro(var a: archivo_productos);
 var
     p: producto;
 begin
-    assign(a, 'Archivo_productos');
     rewrite(a);
     cargarProducto(p);
     while (p.codigo <> 9999) do
@@ -78,7 +77,6 @@ procedure crearDetalle(var det: archivo_detalle);
 var
     d: detalle;
 begin
-    assign(det, 'Archivo_detalle');
     rewrite(det);
     cargarDetalle(d);
     while (d.codigo <> 9999) do
@@ -89,7 +87,7 @@ begin
     close(det);
 end;
 
-procedure leerDetalle(var det: archivo_detalle; dato: detalle);
+procedure leerDetalle(var det: archivo_detalle; var dato: detalle);
 begin
     if (not eof(det)) then
         read(det, dato)
@@ -101,29 +99,33 @@ procedure actMaestro(var mae: archivo_productos; var det: archivo_detalle);
 var
     regM: producto;
     regD: detalle;
-    total: integer;
+    codActual, total: integer;
 begin
     reset(mae);
     reset(det);
-    while (not eof(det)) do
+    if (not eof(mae)) then
         begin
             read(mae, regM);
-            read(det, regD);
-            while (regM.codigo <> regD.codigo) do
-                read(mae, regM);
-            while (not eof(det)) and (regM.codigo = regD.codigo) do
+            leerDetalle(det, regD);
+            while (regD.codigo <> valorAlto) do
                 begin
-                    regM.stockDisp := regM.stockDisp - regD.cantVendida;
-                    read(det, regD);
-                end;
-            if (not eof(det)) then
-                seek(det, filepos(det)-1);
-            seek(mae, filepos(det)-1);
-            write(mae, regM);
+                    codActual := regD.codigo;
+                    total := 0;
+                    writeln('Hola');
+                    while (not eof(mae)) and (regM.codigo <> codActual) do
+                        read(mae, regM);
+                    while (regM.codigo = codActual) do
+                        begin
+                            total := total + regD.cantVendida;
+                            leerDetalle(det, regD);
+                        end;
+                    regM.stockDisp := regM.stockDisp - total;
+                    write(mae, regM);
+                end; 
         end;
+    writeln('Hola');
     close(mae);
     close(det);
-
 end;
 
 procedure crearTxt(var a: archivo_productos);
@@ -149,8 +151,10 @@ var
     det: archivo_detalle;
     opcion: char;
 begin
+    assign(a, 'Archivo_productos');
+    assign(det, 'Archivo_detalle');
     crearMaestro(a);
-    crearDetalle(det);
+    //crearDetalle(det);
     writeln('-Ejercicio 3--------------------------------------------------------------------');
     writeln();
     writeln('Ingrese una opcion');
