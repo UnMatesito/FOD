@@ -35,9 +35,6 @@ var
     det: archivo_detalle;
     regM: alumno;
     regD: detalle;
-    cantCursadas: integer;
-    cantFinales: integer;
-    aux: integer;
 begin
     assign(det, 'Detalle_Alumnos');
     reset(mae); reset(det);
@@ -45,22 +42,19 @@ begin
     while (regD <> valorAlto) do
         begin
             read(mae, regM);
-            cantCursadas := 0; cantFinales := 0;
             while (regM.codigo <> regD.codigo) do
                 read(mae, regM);
             while (regM.codigo = regD.codigo) do
                 begin
                     if (regD.queAprobo = 1) then
-                        cantCursadas := cantCursadas + 1
+                        regM.cursadas := regM.cursadas + 1
                     else
                         begin
-                            cantFinales := cantFinales + 1;
-                            cantCursadas := cantCursadas - 1;
+                            regM.aprobadas := regM.aprobadas + 1;
+                            regM.cursadas := regM.cursadas - 1;
                         end;
                     leer(det, regD);
                 end;
-            regM.cursadas := regM.cursadas + cantCursadas;
-            regM.aprobadas := regM.aprobadas + cantFinales;
             seek(mae, filepos(mae)-1);
             write(mae, regM);
         end;

@@ -2,7 +2,7 @@ program E04P2;
 const
     valorAlto = 'zzzzz';
 
-
+//tipos de datos
 type
     informe = record
         nomProvincia: string;
@@ -52,14 +52,24 @@ begin
     reset(mae);
     reset(det1); reset(det2);
     leer(det1, regD1); leer(det2, regD2);
-    minimo(regD1, regD2, min);
+    minimo(det1, det2, regD1, regD2, min);
     while (min.nomProvincia <> valorAlto) do
         begin
-            
+            read(mae, regM);
+            while (regM.nomProvincia <> min.nomProvincia) do
+                read(mae, regM);
+            while (regM.nomProvincia = min.nomProvincia) do
+                begin
+                    regM.alfavetizados := regM.alfavetizados + min.alfavetizados;
+                    regM.encuestados := regM.encuestados + min.encuestados;
+                    minimo(det1, det2, regD1, regD2, min);
+                end;
+            seek(mae, filepos(mae)-1);
+            write(mae, regM);
         end;
+    close(mae);
+    close(det1);
+    close(det2);
 end;
 
-
-begin
-    
-end.
+//Aca iria el programa principal (creacion del archivo maestro/detalle)
