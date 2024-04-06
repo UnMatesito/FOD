@@ -45,7 +45,7 @@ type
 procedure leer(var archivo: archivo_detalle; var dato: detalle);
 begin
     if (not eof(archivo)) then
-        read(archivo, dato);
+        read(archivo, dato)
     else
         dato.codMoto := valorAlto;
 end;
@@ -60,19 +60,32 @@ begin
             if (regD[i].codMoto < min.codMoto) then
                 begin
                     min := regD[i];
-                    leer(det[i], reg[i]);
+                    leer(det[i], regD[i]);
                 end;
         end;
 end;
 
+procedure motoMasVendida(regM: moto; totalVentas: integer; var maxCod, max: integer);
+begin
+    if (totalVentas > max) then
+        begin
+            max := totalVentas;
+            maxCod := regM.codMoto;
+        end;
+end;
+
+
 procedure actMaestro(var mae: archivo_maestro; var det: detalles_empleados);
 var
     i: integer;
-    regD: registros_detalles
+    regD: registros_detalles;
     regM: moto;
     codAct: integer;
     totalVentas: integer;
+    min: detalle;
+    max, maxCod: integer;
 begin
+    max := -1;
     reset(mae);
     for i:=1 to cantEmpelados do
         begin
@@ -89,33 +102,27 @@ begin
                 begin
                     codAct := min.codMoto;
                     totalVentas := 0;
-                    while ((regM.codMoto = min.codMoto) and (codAct = min.codMoto)) do
+                    while (codAct = min.codMoto) do
                         begin
                             totalVentas := totalVentas + 1;
+                            minimo(det, regD, min);
                         end;
                     regM.stockAct := regM.stockAct - totalVentas;
+                    motoMasVendida(regM, totalVentas, maxCod, max);
                 end;
             seek(mae, filepos(mae)-1);
-            
             write(mae, regM);
         end;
-end;
-
-procedure motoMasVendida(var mae: archivo_maestro);
-var
-    m: moto;
-    max: moto;
-begin
-
+    writeln('La Moto que mas se vendio es la de codigo ', maxCod, ' Con un total de: ', max);
 end;
 
 var
     mae: archivo_maestro;
     det: detalles_empleados;
+    i: integer;
 begin
     assign(mae, 'Archivo_Motos');
     for i:= 1 to cantEmpelados do
         assign(det[i], 'Det'+IntToStr(i));
     actMaestro(mae, det);
-    motoMasVendida(mae);
 end.
