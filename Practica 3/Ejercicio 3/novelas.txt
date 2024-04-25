@@ -1,0 +1,20 @@
+Codigo: 10 Nombre: ABB
+Duracion: 50 Genero: Terror
+Precio: 50043.00 Director: Nolan
+
+Codigo: 100 Nombre: Jopdf
+Duracion: 473 Genero: Amor
+Precio: 57743.00 Director: George Williams
+
+Codigo: 250 Nombre: Hola
+Duracion: 453 Genero: Hola
+Precio: 5344.00 Director: Hola
+
+Codigo: 400 Nombre: GoGOs
+Duracion: 458 Genero: Hola
+Precio: 47853.00 Director: Hola
+
+Codigo: 9999 Nombre: GoGOs
+Duracion: 458 Genero: Hola
+Precio: 47853.00 Director: Hola
+
