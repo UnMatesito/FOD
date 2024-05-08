@@ -1,0 +1,50 @@
+b. Se supone que:
+Alumno ocupa 64 bytes
+
+Los enteros (representan los hijos) 4 bytes cada uno
+
+Un nodo ocupa 512 bytes
+
+Formula : N = (M-1) * A + M * B + C
+
+N = tamaño en bytes del nodo
+
+A = tamaño en bytes del registro
+
+B = tamaño en bytes de cada enlace a un hijo
+
+C = tamaño que ocupa el campo referido a la cantidad de claves (cantidad de datos) 
+
+M = orden
+
+¿Cuántos registros de persona entrarían en un nodo del árbol B? 
+¿Cuál sería el orden del árbol B en este caso (el valor de M)?
+
+Solucion:
+
+512 = (M-1) * 64 + M * 4 + 4
+512-4 = (M-1) * 64 + M * 4
+508 = (M-1) * 64 + M * 4
+508 = 64M - 64 + 4M
+508 = 68M - 64
+508 + 64 = 68M
+572 = 68M
+572/68 = M
+8 = M
+
+En un nodo entrarian 7 registros de personas [M-1], es decir que el orden del arbol es 8
+
+c. Al utilizar todo el registro de persona se consume mas cantidad de bytes, 
+esto quiere decir que si seleccionamos un campo del registro que no consuma muchos bytes, el orden del arbol va a ser mayor.
+
+d. Se podria seleccionar el dato de DNI o legajo ya que los dos ocupan 4 bytes como maximo y permiten generar un orden en el arbol B
+
+e. Caso legajo
+
+Mejor caso: 1 lectura de nodo (se encuentra en el nodo raiz)
+Peor caso: M lecturas de nodo (se encuentra en el utimo nodo terminal)
+
+Caso DNI
+
+Mejor caso: 1 lectura de nodo (se encuentra en el nodo raiz)
+Peor caso: M lecturas de nodo (se encuentra en el utimo nodo terminal)
