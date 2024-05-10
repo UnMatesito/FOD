@@ -1,0 +1,18 @@
+Punto A:
+
+posicionarYLeerNodo() se encarga de posicionarse en el nodo que se quiere recorrer y se leer dicho nodo para buscar la clave.
+A tiene que ser enviado como un parametro por valor, nodo tiene que ser enviado por referencia y el NRR se debe pasar por valor.
+
+Punto B:
+
+claveEncontrada() se encarga de buscar en el nodo dado anteriormente por posicionarYLeerNodo() si la clave a buscar se encuentra en dicho nodo.
+A tiene que ser enviado como un parametro por valor, nodo, clave y pos tiene que ser enviado por valor y clave_encontrada tiene que ser pasado por referencia.
+
+Punto C:
+
+Si existe un error en el proceso claveEncontrada() que pasa por parametro el arbol, lo cual no es necesario debido a que ya se tiene del nodo a buscar la clave.
+
+Punto D:
+
+Los cambios necesarios para que se pueda utilizar este proceso en un arbol B+ es que si encuentra el elemento en un nodo interno (debo saber si es terminal o interno) me debo ir al nodo terminal para encontrar
+la clave. Es decir que si se busca una clave que tambien es un separador se debe de buscar 2 veces.

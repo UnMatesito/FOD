@@ -1,0 +1,55 @@
+b. Se supone que cada nodo tiene un valor de 512 bytes
+
+Formula = N = (M-1) * E + (M-1) * A + M * B + C
+
+M = orden
+
+N = tamaño en bytes del nodo
+
+E = tamaño en bytes de los enlaces
+
+A = tamaño en bytes de las claves
+
+B = tamaño en bytes de cada enlace a un hijo
+
+C = tamaño que ocupa el campo referido a la cantidad de claves (cantidad de datos)
+
+¿De que orden va a ser cada nodo del arbol (valor de M)?
+
+Solucion:
+
+512 = (M-1) * 4 + (M-1) * 4 + M * 4 + 4
+512-4 = (M-1) * 4 + (M-1) * 4 + M * 4
+508 = (M-1) * 4 + (M-1) * 4 + M * 4
+508 = 4M - 4 + 4M - 4 + 4M
+508 + 4 + 4 = 12M
+516 = 12M
+516/12 = M
+43 = M
+
+Cada nodo del arbol es de nodo 43 (43 hijos, 42 elementos por nodo)
+
+c. Al ser mayor el orden, se pueden agregar mas datos con menos costo de bytes y tambien la profundidad del arbol va a disminuir mucho, debido a que se pueden almacenar mas elementos en un nodo.
+
+d. Para buscar el DNI 12345678 se debe hacer lo siguiente:
+
+1. Se empieza por la raiz
+    Si se encuentra, 
+    -> Se debe acceder al indice y buscar donde se encuentra en el archivo de alumnos y finalizo la busqueda
+    Sino
+    -> Se sigue buscando en nodo de indices
+2. Si no se encuentro en ese nodo el DNI solicitado accedo a los hijos de el nodo
+    si el numero es mas chico que el primer elemento del nodo
+        -> Me voy al hijo mas izquierdo
+            -> Realizo la busqueda como se hizo en la raiz
+    Sino
+        -> al siguiente del izquiero o al mas derecho
+            -> Realizo la busqueda como se hizo en la raiz
+
+e. Si se quiere buscar por el legajo del alumno se reduce la cantidad de numeros que deben considerarse en una busqueda o insercion debido a los legajos tienen menos numeros.
+Tiene sentido utilizar el mismo indice que organiza el DNI debido a que son del mismo tipo de dato. Para poder realizar lo requerido no es necesario cambiar como se declara el nodo, por semejanza de datos.
+Lo unico que se deberia modificar el como se realiza el enlace entre el arbol y el archivo de alumnos, preguntando por el legajo.
+
+f. En este caso si se quiere buscar de la estructura DNI desde 2 valores, primero debemos realizar la busqueda del indice en el arbol y luego se debe accerder al archivo de datos con el enlace al DNI de dicho registro.
+El principal problema de usar esta tecnica es que se deben realizar el doble de lecturas debido al acceso al archivo para buscar el alumno completo, por lo tanto es mas costoso en cuanto lecturas pero mas eficiente en espacio si se tiene de registros muy grandes.
+Por que cada vez que se encuentra un dni se debe realizar una lectura en el archivo de alumnos para encontrarlo.

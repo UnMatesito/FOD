@@ -1,4 +1,4 @@
-program E01P4;
+program arbolBconRegistros;
 
 type
     alumno = record
@@ -15,3 +15,5 @@ type
     end;
 
     arbolB = file of nodo;
+
+// Modulos y cuerpo del programa

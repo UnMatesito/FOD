@@ -1,0 +1,13 @@
+a. En un arbol b+ poedemos encoentrar en los nodos internos del arbol los separadores de las claves que son copias de las claves que generan el orden del arbol,
+por lo tanto en los nodos terminales se encuentran las claves "reales" que van a permitir el orden y busqueda eficiente de registros en el archivo
+
+b. Los nodos hojas de un arbol b+ presentan la caracteristica que se encuentran conectados con su siguiente, es decir que no se generan problemas al utilizar las politicas de resolución de overflow.
+Se lo podria teorizar como una lista enlazada de claves.
+
+d. Para realizar una busqueda de una clave primero empezamos por la raiz, si el numero que buscamos se encuentra en el nodo raiz o nodo interno, es un separador, por lo tanto tenemos que ir al nodo donde se encuentra la clave (puede no existir);
+Para otros elmentos debemos determinar si el elemento es mas chico que el separador, si es asi vamos al nodo terminal mas a la izquierda, si es mas grande vamos al nodo terminal siguiente del mas izquierdo y buscamos el nodo.
+Si se recorre el arbol y vemos que no encontramos el nodo, el elemento que queremos buscar no existe.
+La principal diferencia con un arbol B es que se debe llegar a los nodos terminales para encontrar los elementos, en el arbol B cuando se encontraba el elemento y no se encontraba en un nodo terminal la busqueda finalizaba.
+
+e. La principal ventaja de usar un arbol B+ es que al existir separadores si el algoritmo es correcto, la busqueda va a ser mas eficiente porque se va a saber en que zonas se encuentrar los elementos dentro del rango, gracias a los separadores.
+

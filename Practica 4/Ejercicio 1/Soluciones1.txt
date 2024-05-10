@@ -42,9 +42,14 @@ d. Se podria seleccionar el dato de DNI o legajo ya que los dos ocupan 4 bytes c
 e. Caso legajo
 
 Mejor caso: 1 lectura de nodo (se encuentra en el nodo raiz)
-Peor caso: M lecturas de nodo (se encuentra en el utimo nodo terminal)
+Peor caso: Se necesitan K lecturas como para llegar al nodo terminal de el nivel mas profundo del arbol
 
 Caso DNI
 
 Mejor caso: 1 lectura de nodo (se encuentra en el nodo raiz)
-Peor caso: M lecturas de nodo (se encuentra en el utimo nodo terminal)
+Peor caso: Se necesitan K lecturas como para llegar al nodo terminal de el nivel mas profundo del arbol
+
+f. Si se quiere buscar un alumno por un criterio diferente, por ejemplo nombre y apellido, se deberia leer el campo y determinar si el nombre completo es igual al que necesito y puede pasar que el nombre se repita por lo que se debe buscar los valores del apellido.
+Utilizando este campo, se vuelve mas costoso en tiempo y cantidad de bytes a procesar.
+
+

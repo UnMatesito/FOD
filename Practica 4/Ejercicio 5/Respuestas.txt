@@ -1,0 +1,20 @@
+Overflow
+
+El overflow se produce cuando un nodo, ya sea terminal o interno se excede de la cantidad elementos que puede alacenar, 
+es decir que la cantidad de elementos es igual al orden y el orden es M+1 al agregar un nuevo hijo.
+
+Underflow
+
+El Underflow se produce cuando en un nodo se elimina un elemento y el nodo (ya sea terminal o interno) se queda vacio, violando la regla de cantidad minima de elementos en un nodo.
+
+Redistribución
+
+La Redistribución es una tecnica para solucionar el overflow, para ello se debe agarrar el nodo que esta causando overflow y partilo a la mitad, 
+creando 2 nuevos nodos donde el primero va a contener los 2 primeros elementos del nodo y el otro nodo asignandole la clave de mas a la derecha y la clave del medio es la nueva raiz que se conecta a esos 2 nodos.
+(pensando un arbol de orden 4)
+
+Fusión o concatenación
+
+La Fusión o concatenación es una tecnica para solucionar el underflow, para ello cuando ocurre underflow, primero de todo el arbol ve que politica de underflow obedece, y puede buscar por el hijo izquierdo o derecho
+Y crear un nodo nuevo con los datos de la izquierda y la derecha, fusionando las elementos, eso si esto no debe romper el balanceo del arbol, por lo que puede ocurrir una redistribucion del elmentos para respetar
+el balanceo del arbol.
